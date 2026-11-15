@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一級建築士 合格カウントダウン 🏛️🌷</title>
+    <!-- Google Fonts から可愛いフォント（M PLUS Rounded 1c）を読み込み -->
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px 0;
+            background: radial-gradient(circle at 20% 20%, #ffedf0 0%, transparent 40%),
+                        radial-gradient(circle at 80% 80%, #ffd1dc 0%, transparent 40%),
+                        linear-gradient(135deg, #ffdde1 0%, #ee9ca7 100%);
+            background-attachment: fixed;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #555;
+            box-sizing: border-box;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.4) 2px, transparent 2px);
+            background-size: 30px 30px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 30px 25px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(238, 156, 167, 0.3);
+            text-align: center;
+            width: 90%;
+            max-width: 420px;
+            box-sizing: border-box;
+            border: 4px solid #fff5f7;
+            position: relative;
+            overflow: visible;
+        }
+
+        /* 応援ハムちゃん1（右上） */
+        .hamster-badge-1 {
+            position: absolute;
+            top: -22px;
+            right: 15px;
+            background: #fff9e6;
+            border: 2px solid #ffd56b;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            color: #d48806;
+            box-shadow: 0 4px 10px rgba(255, 213, 107, 0.4);
+            animation: floatHam 2s ease-in-out infinite;
+        }
+
+        /* 応援ハムちゃん2（左上） */
+        .hamster-badge-2 {
+            position: absolute;
+            top: -22px;
+            left: 15px;
+            background: #e6f9ff;
+            border: 2px solid #6bd5ff;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            color: #0680d4;
+            box-shadow: 0 4px 10px rgba(107, 213, 255, 0.4);
+            animation: floatHam 2.5s ease-in-out infinite;
+        }
+
+        @keyframes floatHam {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        h1 {
+            color: #ff758c;
+            font-size: 21px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .today-text {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .section-box {
+            background: #fff0f3;
+            padding: 15px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            color: #ff758c;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input[type="date"], select, input[type="number"] {
+            padding: 8px 10px;
+            border: 2px dashed #ffb1c1;
+            border-radius: 12px;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 14px;
+            color: #666;
+            background: #fff;
+            outline: none;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        input[type="date"]:focus, select:focus, input[type="number"]:focus {
+            border-color: #ff758c;
+        }
+
+        .clear-btn {
+            background: #ffb1c1;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+
+        .clear-btn:hover {
+            background: #ff758c;
+        }
+
+        .counter-box {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(255, 154, 158, 0.4);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .counter-title {
+            font-size: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .number {
+            font-size: 48px;
+            font-weight: bold;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .unit {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .message {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        /* 成果コミットアドバイス枠 */
+        .commit-box {
+            background: #fffdf4;
+            border: 2px solid #ffe58f;
+            border-radius: 18px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .commit-title {
+            font-size: 13px;
+            color: #d48806;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .commit-text {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* 勉強記録エリア */
+        .study-form {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+            align-items: center;
+        }
+
+        .study-form select {
+            flex: 1.2;
+        }
+
+        .study-form input[type="number"] {
+            flex: 1;
+        }
+
+        .add-btn {
+            background: #ff758c;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+
+        .add-btn:hover {
+            background: #e05e74;
+        }
+
+        /* 過去の分をまとめて追加枠 & 直前取消ボタン */
+        .past-add-area {
+            background: #fff5f7;
+            border: 1px dashed #ffb1c1;
+            padding: 10px;
+            border-radius: 14px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .past-add-area select, .past-add-area input {
+            font-size: 13px;
+            padding: 6px;
+        }
+
+        .past-btn {
+            background: #dcd6f7;
+            color: #5a4bcf;
+            border: none;
+            padding: 7px 10px;
+            border-radius: 10px;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: 0.2s;
+        }
+
+        .past-btn:hover {
+            background: #c5bde8;
+        }
+
+        .undo-btn {
+            background: #ffb1c1;
+            color: white;
+            border: none;
+            padding: 7px 10px;
+            border-radius: 10px;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: 0.2s;
+            margin-bottom: 12px;
+            width: 100%;
+        }
+
+        .undo-btn:hover {
+            background: #ff758c;
+        }
+
+        /* 進捗バー付き科目リスト */
+        .progress-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .progress-card {
+            background: #fff;
+            padding: 8px 12px;
+            border-radius: 12px;
+            border: 1px solid #ffb1c1;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 4px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .progress-bar-bg {
+            background: #ffe6ec;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, #ff9a9e 0%, #ff758c 100%);
+            height: 100%;
+            width: 0%;
+            border-radius: 4px;
+            transition: width 0.4s ease;
+        }
+
+        .grand-total-box {
+            background: #ff758c;
+            color: white;
+            padding: 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        /* 履歴リスト */
+        .history-list {
+            max-height: 90px;
+            overflow-y: auto;
+            font-size: 12px;
+            background: #fff;
+            border-radius: 10px;
+            padding: 6px;
+            border: 1px solid #ddd;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 3px 6px;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .delete-record {
+            color: #ff758c;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        /* 名言エリアのデザイン */
+        .quote-box {
+            background: #f8f9ff;
+            border: 2px solid #dcd6f7;
+            border-radius: 20px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .quote-title {
+            font-size: 14px;
+            color: #7b68ee;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .quote-result {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            min-height: 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quote-btn {
+            background: #dcd6f7;
+            color: #5a4bcf;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 15px;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .quote-btn:hover {
+            background: #c5bde8;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- 2匹の応援ハムちゃん -->
+        <div class="hamster-badge-2">🐹 まけるなハム！</div>
+        <div class="hamster-badge-1">🐹 がんばれハム！</div>
+
+        <h1>🏛️ 一級建築士 合格カウントダウン 🌷</h1>
+        
+        <div class="today-text" id="todayDisplay">今日の日付を取得中...</div>
+
+        <!-- カウントダウン設定 -->
+        <div class="section-box">
+            <label for="examDate">🎯 一級建築士試験日を選んでね</label>
+            <div class="input-group">
+                <input type="date" id="examDate" style="flex: 1;">
+                <button class="clear-btn" id="clearBtn" title="リセットする">クリア</button>
+            </div>
+        </div>
+
+        <div class="counter-box">
+            <div class="counter-title">試験日まであと</div>
+            <div><span class="number" id="countdownNumber">--</span><span class="unit"> 日</span></div>
+            <div class="message" id="messageText">今日も一歩ずつ合格へ近づこう！✨</div>
+        </div>
+
+        <!-- 成果コミットアドバイス枠 -->
+        <div class="commit-box">
+            <div class="commit-title">💡 合格コーチからの目標コミット</div>
+            <div class="commit-text" id="commitComment">データを計算中...</div>
+        </div>
+
+        <!-- 勉強時間・科目記録コーナー（進捗バー付き） -->
+        <div class="section-box">
+            <label>📚 勉強時間を記録する</label>
+            
+            <!-- 過去の分をまとめて追加できる枠 -->
+            <div class="past-add-area">
+                <select id="pastSubjectSelect" style="flex: 1.2;">
+                    <option value="計画">計画(過去)</option>
+                    <option value="環境設備">環境設備(過去)</option>
+                    <option value="法規">法規(過去)</option>
+                    <option value="構造">構造(過去)</option>
+                    <option value="施工">施工(過去)</option>
+                </select>
+                <input type="number" id="pastHoursInput" step="0.5" min="0.5" max="500" placeholder="時間" style="flex: 0.9;" value="10">
+                <button class="past-btn" id="addPastBtn">過去分を足す</button>
+            </div>
+
+            <!-- 本日の記録用フォーム -->
+            <div class="study-form">
+                <select id="subjectSelect">
+                    <option value="計画">計画</option>
+                    <option value="環境設備">環境設備</option>
+                    <option value="法規">法規</option>
+                    <option value="構造">構造</option>
+                    <option value="施工">施工</option>
+                </select>
+                <input type="number" id="studyHoursInput" step="0.5" min="0.5" max="24" placeholder="時間(例: 1.5)" value="1">
+                <button class="add-btn" id="addRecordBtn">今日の分を記録</button>
+            </div>
+
+            <!-- 直前の記録を取消すボタン -->
+            <button class="undo-btn" id="undoBtn">↩️ 直前の記録を取消す</button>
+
+            <!-- 進捗バー表示エリア -->
+            <div class="progress-container" id="progressContainer">
+                <!-- JavaScriptで自動生成されます -->
+            </div>
+
+            <!-- トータル勉強時間 -->
+            <div class="grand-total-box">
+                <span>総勉強時間</span>
+                <span id="sum-grand">0h</span>
+            </div>
+
+            <!-- 記録の履歴・削除用 -->
+            <div class="history-list" id="historyList">
+                <div style="text-align: center; color: #888;">まだ記録はありません</div>
+            </div>
+        </div>
+
+        <!-- 名言コーナー -->
+        <div class="quote-box">
+            <div class="quote-title">📖 今日のひとこと（建築・名言エール）</div>
+            <div class="quote-result" id="quoteResult">ボタンを押して名言を表示してね！✨</div>
+            <button class="quote-btn" id="quoteBtn">ほかの名言を見る 💡</button>
+        </div>
+    </div>
+
+    <script>
+        // --- データの安全保護ロジック ---
+        function getSavedData(key, defaultValue) {
+            try {
+                const val = localStorage.getItem(key);
+                if (val !== null && val !== "null" && val !== "") {
+                    return JSON.parse(val);
+                }
+            } catch (e) {
+                // パースエラー等の場合はデフォルトを返す
+            }
+            return defaultValue;
+        }
+
+        const today = new Date();
+        const examDateInput = document.getElementById('examDate');
+        const clearBtn = document.getElementById('clearBtn');
+        const todayDisplay = document.getElementById('todayDisplay');
+        const countdownNumber = document.getElementById('countdownNumber');
+        const messageText = document.getElementById('messageText');
+        const commitComment = document.getElementById('commitComment');
+
+        function formatDateString(date) {
+            const y = date.getFullYear();
+            const m = String(date.getMonth() + 1).padStart(2, '0');
+            const d = String(date.getDate()).padStart(2, '0');
+            return `${y}-${m}-${d}`;
+        }
+
+        // 試験日の読み込み（保存データがなければ1ヶ月後を安全に設定）
+        let savedExamDate = localStorage.getItem('savedExamDate');
+        if (!savedExamDate || savedExamDate === "null" || savedExamDate === "") {
+            const defaultExam = new Date();
+            defaultExam.setMonth(today.getMonth() + 1);
+            savedExamDate = formatDateString(defaultExam);
+            localStorage.setItem('savedExamDate', savedExamDate);
+        }
+        examDateInput.value = savedExamDate;
+
+        let globalDiffDays = 0;
+
+        function updateCountdown() {
+            const now = new Date();
+            now.setHours(0, 0, 0, 0);
+
+            const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'short' };
+            todayDisplay.textContent = `📅 今日：${now.toLocaleDateString('ja-JP', options)}`;
+
+            const examValue = examDateInput.value;
+            if (!examValue) {
+                countdownNumber.textContent = "--";
+                messageText.textContent = "日付を選んでね！";
+                globalDiffDays = 0;
+                updateCommitAdvisor();
+                return;
+            }
+
+            localStorage.setItem('savedExamDate', examValue);
+
+            const exam = new Date(examValue);
+            exam.setHours(0, 0, 0, 0);
+
+            const diffTime = exam - now;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            globalDiffDays = diffDays;
+
+            if (diffDays > 0) {
+                countdownNumber.textContent = diffDays;
+                messageText.textContent = "今日も一歩ずつ合格へ近づこう！✨";
+            } else if (diffDays === 0) {
+                countdownNumber.textContent = "0";
+                messageText.textContent = "🎉 ついに試験当日！全力を出し切ろう！🔥";
+            } else {
+                countdownNumber.textContent = "終了";
+                messageText.textContent = "おつかれさまでした！合格を祈ってます🌸";
+            }
+
+            updateCommitAdvisor();
+        }
+
+        clearBtn.addEventListener('click', () => {
+            const defaultExam = new Date();
+            defaultExam.setMonth(today.getMonth() + 1);
+            const defaultStr = formatDateString(defaultExam);
+            examDateInput.value = defaultStr;
+            localStorage.setItem('savedExamDate', defaultStr);
+            updateCountdown();
+        });
+
+        examDateInput.addEventListener('change', updateCountdown);
+
+
+        // --- 勉強時間・科目の記録 & 進捗バー & コミットアドバイザー処理 ---
+        const subjects = ["計画", "環境設備", "法規", "構造", "施工"];
+        
+        const targetHoursMap = {
+            "計画": 100,
+            "環境設備": 120,
+            "法規": 250,
+            "構造": 300,
+            "施工": 150
+        };
+        const totalTargetHours = 970;
+
+        const subjectSelect = document.getElementById('subjectSelect');
+        const studyHoursInput = document.getElementById('studyHoursInput');
+        const addRecordBtn = document.getElementById('addRecordBtn');
+        const undoBtn = document.getElementById('undoBtn');
+        
+        const pastSubjectSelect = document.getElementById('pastSubjectSelect');
+        const pastHoursInput = document.getElementById('pastHoursInput');
+        const addPastBtn = document.getElementById('addPastBtn');
+
+        const historyList = document.getElementById('historyList');
+        const progressContainer = document.getElementById('progressContainer');
+
+        // 勉強記録の安全な読み込み
+        let studyRecords = getSavedData('studyRecords', []);
+
+        function renderStudyData() {
+            let totals = { "計画": 0, "環境設備": 0, "法規": 0, "構造": 0, "施工": 0 };
+            let grandTotal = 0;
+
+            studyRecords.forEach(record => {
+                if (totals[record.subject] !== undefined) {
+                    totals[record.subject] += record.hours;
+                    grandTotal += record.hours;
+                }
+            });
+
+            document.getElementById('sum-grand').textContent = grandTotal + "h";
+
+            progressContainer.innerHTML = '';
+            subjects.forEach(sub => {
+                const current = totals[sub];
+                const target = targetHoursMap[sub];
+                let percent = (current / target) * 100;
+                if (percent > 100) percent = 100;
+
+                const card = document.createElement('div');
+                card.className = 'progress-card';
+                card.innerHTML = `
+                    <div class="progress-info">
+                        <span>${sub}</span>
+                        <span>${current}h / 目安${target}h</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: ${percent}%;"></div>
+                    </div>
+                `;
+                progressContainer.appendChild(card);
+            });
+
+            if (studyRecords.length === 0) {
+                historyList.innerHTML = '<div style="text-align: center; color: #888;">まだ記録はありません</div>';
+            } else {
+                historyList.innerHTML = '';
+                [...studyRecords].reverse().forEach((record, index) => {
+                    const originalIndex = studyRecords.length - 1 - index;
+                    const item = document.createElement('div');
+                    item.className = 'history-item';
+                    item.innerHTML = `
+                        <span>📅 ${record.date} / <b>${record.subject}</b>: ${record.hours}h</span>
+                        <span class="delete-record" onclick="deleteRecord(${originalIndex})">×</span>
+                    `;
+                    historyList.appendChild(item);
+                });
+            }
+
+            // 安全にデータを保存
+            localStorage.setItem('studyRecords', JSON.stringify(studyRecords));
+            updateCommitAdvisor(grandTotal);
+        }
+
+        function updateCommitAdvisor(currentTotal = null) {
+            if (currentTotal === null) {
+                currentTotal = studyRecords.reduce((acc, cur) => acc + cur.hours, 0);
+            }
+
+            const remainingHours = totalTargetHours - currentTotal;
+
+            if (globalDiffDays <= 0) {
+                commitComment.textContent = "試験本番です！これまでの努力をすべて出し切って合格を勝ち取りましょう！🔥";
+                return;
+            }
+
+            if (remainingHours <= 0) {
+                commitComment.textContent = `🎉 目標の総勉強時間（約${totalTargetHours}h）を達成しました！過去問演習を徹底しよう！🏛️✨`;
+                return;
+            }
+
+            const neededPerDay = (remainingHours / globalDiffDays).toFixed(1);
+
+            commitComment.innerHTML = `残り <b>${globalDiffDays}日</b> ／ 目標まであと <b>${remainingHours}h</b><br>` +
+                                       `🎯 成果を出すための1日ノルマ：平均 <b>約 ${neededPerDay}時間</b><br>` +
+                                       `<span style="color:#d48806; font-weight:bold; display:inline-block; margin-top:2px;">法規と構造の得点源を意識して、今日も確実に積み上げよう！</span>`;
+        }
+
+        // 今日の分を追加
+        addRecordBtn.addEventListener('click', () => {
+            const subject = subjectSelect.value;
+            const hours = parseFloat(studyHoursInput.value);
+
+            if (isNaN(hours) || hours <= 0) {
+                alert("正しい時間を入力してね！");
+                return;
+            }
+
+            const todayStr = formatDateString(new Date());
+            studyRecords.push({ date: todayStr, subject: subject, hours: hours });
+            renderStudyData();
+        });
+
+        // 過去の分をまとめて追加
+        addPastBtn.addEventListener('click', () => {
+            const subject = pastSubjectSelect.value;
+            const hours = parseFloat(pastHoursInput.value);
+
+            if (isNaN(hours) || hours <= 0) {
+                alert("正しい時間を入力してね！");
+                return;
+            }
+
+            studyRecords.push({ date: "過去分", subject: subject, hours: hours });
+            renderStudyData();
+        });
+
+        // 直前の記録を取消すボタン
+        undoBtn.addEventListener('click', () => {
+            if (studyRecords.length === 0) {
+                alert("取り消す記録がありません！");
+                return;
+            }
+            studyRecords.pop();
+            renderStudyData();
+        });
+
+        window.deleteRecord = function(index) {
+            studyRecords.splice(index, 1);
+            renderStudyData();
+        };
+
+        updateCountdown();
+        renderStudyData();
+
+
+        // --- 名言の処理 ---
+        const quotes = [
+            { text: "「神はディテールに宿る。」", author: "ミース・ファン・デル・ローエ" },
+            { text: "「建築は凍れる音楽である。」", author: "ゲーテ" },
+            { text: "「小さな一歩を重ねることが、とんでもないところへ行く唯一の道である。」", author: "イチロー" },
+            { text: "「成功する秘訣は、目標に向かって絶えず一定の歩みを続けることである。」", author: "ジョン・ロックフェラー" },
+            { text: "「住宅は住むための機械である。」", author: "ル・コルビュジエ" },
+            { text: "「今日できることに全力を注げ。そうすれば明日は進歩している。」", author: "ピタゴラス" }
+        ];
+
+        const quoteResult = document.getElementById('quoteResult');
+        const quoteBtn = document.getElementById('quoteBtn');
+
+        function displayRandomQuote() {
+            const randomQ = quotes[Math.floor(Math.random() * quotes.length)];
+            quoteResult.innerHTML = `<span>${randomQ.text}</span><span style="font-size:11px; color:#888; margin-top:6px; display:block;">― ${randomQ.author}</span>`;
+        }
+
+        quoteBtn.addEventListener('click', displayRandomQuote);
+        displayRandomQuote();
+    </script>
+
+</body>
+</html>
